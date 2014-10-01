@@ -1,0 +1,91 @@
+FPR Coursework Submission
+James Siddle, 24th July 2006
+============================
+
+I opted for a modular approach to writing the FPR courswork, so the 
+submission is made up of several files, all should be found in the 
+file "jsiddle_fpr.zip":
+
+submission note.txt 	This file
+webhandler.lhs		Main web handler code
+sumservice.lhs		The sum service
+webparser.lhs		Associated parser functions
+htmlpage.lhs		HTML page data structures and functions
+
+Answers to exercises
+====================
+
+The submitted files make up the final program from the FPR exercises. 
+
+To make it easier to mark the coursework submission I opted to point out where 
+each exercise has been answered in the final program, though the submitted code 
+may bear little resemblance to the original code that was written for some of 
+the early questions.
+
+I'd like to suggest that the coursework description be modified to make it 
+clearer what should be submitted, as Jackie's email about coursework assessment 
+came too late for me to clean up my submission as I would have liked.
+
+Thanks,
+James Siddle
+
+
+Exercise 1: 
+-----------
+The answer to exercise 1 is composed of several parts of the final program. 
+The top-level web-handling is done in "webhandler.lhs", which delegates parsing 
+of the query to the "dict" parser that can be found in "webparser.lhs", and 
+delegates handling of the parsed query to the sumservice function in 
+"sumservice.lhs". 
+
+The sumservice function generates the resulting webpage based on the parsed 
+query input, using the HTML data structures in "htmlpage.lhs".
+
+If the sumservice function receives an invalid query, it displays an error
+page.
+
+Exercise 2: 
+-----------
+The parser for CGI query strings can be found in the file "webparser.lhs", in the 
+functions "dict", "queryElement", and associated parsers. In the final program, 
+these functions are polymorphic to support parsing of string values as well as 
+the required integer values (see exercise 7 for why I did this).
+
+Query string parsing calls can be seen in the main function, in "webhandler.lhs".
+
+Exercise 3: 
+-----------
+This exercise is answered by the functions "suminitial", "summiddle", "sumfinal",
+and "sumerror" in the file "sumservice.lhs".
+
+Exercises 4 and 5:
+------------------
+The top half of the file "htmlpage.lhs" contains the answers to these exercises,
+consisting of the "HTMLBlock" and "HTMLInputType" data structures plus associated types,
+followed by an extended version of the "HTMLBlock" show instance.
+
+Exercise 6:
+-----------
+The answer to this question can be seen in "sumservice.lhs". The program handles the 
+staged addition through a single function, "sumservice".
+
+The "sumservice" function determines the stage for a particular query, while 
+the "suminitial", "summiddle", and "sumfinal" functions provide the particular
+handling for each stage.
+
+The hidden field containing the first entered value can be seen in the 
+"summiddle" function.
+
+Exercise 7:
+-----------
+As described above, the "sumservice" function in "sumservice.lhs" provides
+the three modes of execution required by this exercise. 
+
+Originally this function determined the stage of execution through the existence of 
+the required input fields, however this was augmented with an additional "stage" 
+field which described the specific stage that was being requested. 
+
+This was just an additional "belt and braces" check, added both to improve the 
+resulting program but also to drive the creation of a polymorphic dictionary
+parser to satisfy my own interest and curiosity in this area.
+
